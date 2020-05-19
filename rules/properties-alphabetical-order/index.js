@@ -21,6 +21,7 @@ function rule(actual, options = {}, context = {}) {
 			{
 				actual: options,
 				possible: {
+					allowClockwise: Boolean,
 					disableFix: Boolean,
 				},
 				optional: true,
@@ -30,6 +31,8 @@ function rule(actual, options = {}, context = {}) {
 		if (!validOptions) {
 			return;
 		}
+
+		let allowClockwise = options.allowClockwise || false;
 
 		let disableFix = options.disableFix || false;
 
@@ -44,7 +47,7 @@ function rule(actual, options = {}, context = {}) {
 		root.walk(function processRulesAndAtrules(input) {
 			let node = getContainingNode(input);
 
-			// Avoid warnings duplication, caused by interfering in `root.walk()` algorigthm with `getContainingNode()`
+			// Avoid warnings duplication, caused by interfering in `root.walk()` algorithm with `getContainingNode()`
 			if (processedParents.includes(node)) {
 				return;
 			}
@@ -52,7 +55,7 @@ function rule(actual, options = {}, context = {}) {
 			processedParents.push(node);
 
 			if (isRuleWithNodes(node)) {
-				checkNode(node, result, ruleName, messages);
+				checkNode(node, result, allowClockwise, ruleName, messages);
 			}
 		});
 	};
