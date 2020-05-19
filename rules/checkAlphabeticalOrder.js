@@ -2,6 +2,22 @@ const postcss = require('postcss');
 const shorthandData = require('./shorthandData');
 const clockwiseData = require('./clockwiseData');
 
+// determine whether props are different clockwise longhand for same shorthand
+function isClockwiseException(a, b) {
+	const aIndex = clockwiseData.findIndex((x) => x.test(a));
+	const bIndex = clockwiseData.findIndex((y) => y.test(b));
+
+	const aShorthand = a.slice(0, a.search(clockwiseData[aIndex]));
+	const bShorthand = b.slice(0, b.search(clockwiseData[bIndex]));
+
+	return (
+		aIndex !== -1 &&
+		bIndex !== -1 &&
+		aIndex !== bIndex && // border-right-color and border-right-width should be handled lexically
+		aShorthand === bShorthand // border-left and margin-top should be handled lexically
+	);
+}
+
 function isShorthand(a, b) {
 	const longhands = shorthandData[a] || [];
 
@@ -33,27 +49,11 @@ module.exports = function checkAlphabeticalOrder(firstPropData, secondPropData) 
 	}
 
 	// If shorthand uses clockwise ordering, OK for longhand to be ordered -top < -right < -bottom < -left
-	let firstClockwiseIndex = clockwiseData.findIndex((x) => x.test(firstPropData.unprefixedName));
-	let secondClockwiseIndex = clockwiseData.findIndex((y) =>
-		y.test(secondPropData.unprefixedName)
-	);
-
-	let firstShorthand = firstPropData.unprefixedName.slice(
-		0,
-		firstPropData.unprefixedName.search(clockwiseData[firstClockwiseIndex])
-	);
-	let secondShorthand = secondPropData.unprefixedName.slice(
-		0,
-		secondPropData.unprefixedName.search(clockwiseData[secondClockwiseIndex])
-	);
-
-	if (
-		firstClockwiseIndex !== -1 &&
-		secondClockwiseIndex !== -1 &&
-		firstClockwiseIndex !== secondClockwiseIndex &&
-		firstShorthand === secondShorthand
-	) {
-		return firstClockwiseIndex < secondClockwiseIndex;
+	if (isClockwiseException(firstPropData.unprefixedName, secondPropData.unprefixedName)) {
+		return (
+			clockwiseData.findIndex((x) => x.test(firstPropData.unprefixedName)) <
+			clockwiseData.findIndex((y) => y.test(secondPropData.unprefixedName))
+		);
 	}
 
 	return firstPropData.unprefixedName < secondPropData.unprefixedName;
