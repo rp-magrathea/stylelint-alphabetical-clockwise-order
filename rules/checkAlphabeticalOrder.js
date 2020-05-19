@@ -12,8 +12,8 @@ function isClockwiseException(a, b) {
 	return (
 		aIndex !== -1 && // ignore prop that isn't defined clockwise in shorthand
 		bIndex !== -1 && // ignore prop that isn't defined clockwise in shorthand
-		aIndex !== bIndex && // border-right-color and border-right-width should be handled lexically
-		aShorthand === bShorthand // border-left and margin-top should be handled lexically
+		aIndex !== bIndex && // border-right-color and border-right-width should be handled alphabetically
+		aShorthand === bShorthand // border-left and margin-top should be handled alphabetically
 	);
 }
 
