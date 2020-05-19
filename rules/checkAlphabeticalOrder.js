@@ -1,6 +1,6 @@
 const postcss = require('postcss');
 const shorthandData = require('./shorthandData');
-const clockwiseData = require('./clockwiseData');
+const clockwiseData = require('./properties-alphabetical-order/clockwiseData');
 
 function isClockwiseException(a, b) {
 	const aIndex = clockwiseData.findIndex((x) => x.test(a));
