@@ -2,7 +2,6 @@ const postcss = require('postcss');
 const shorthandData = require('./shorthandData');
 const clockwiseData = require('./clockwiseData');
 
-// determine whether props are different clockwise longhand for same shorthand
 function isClockwiseException(a, b) {
 	const aIndex = clockwiseData.findIndex((x) => x.test(a));
 	const bIndex = clockwiseData.findIndex((y) => y.test(b));
@@ -11,8 +10,8 @@ function isClockwiseException(a, b) {
 	const bShorthand = b.slice(0, b.search(clockwiseData[bIndex]));
 
 	return (
-		aIndex !== -1 &&
-		bIndex !== -1 &&
+		aIndex !== -1 && // ignore prop that isn't defined clockwise in shorthand
+		bIndex !== -1 && // ignore prop that isn't defined clockwise in shorthand
 		aIndex !== bIndex && // border-right-color and border-right-width should be handled lexically
 		aShorthand === bShorthand // border-left and margin-top should be handled lexically
 	);
