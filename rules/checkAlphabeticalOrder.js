@@ -34,12 +34,12 @@ module.exports = function checkAlphabeticalOrder(firstPropData, secondPropData) 
 
 	// If shorthand uses clockwise ordering, OK for longhand to be ordered -top < -right < -bottom < -left
 	if (
-		clockwiseOrder.includes(firstPropData.unprefixedName) &&
-		clockwiseOrder.includes(secondPropData.unprefixedName)
+		clockwiseOrder.some((x) => x.test(firstPropData.unprefixedName)) &&
+		clockwiseOrder.some((y) => y.test(secondPropData.unprefixedName))
 	) {
 		return (
-			clockwiseOrder.indexOf(firstPropData.unprefixedName) <
-			clockwiseOrder.indexOf(secondPropData.unprefixedName)
+			clockwiseOrder.findIndex((x) => x.test(firstPropData.unprefixedName)) <
+			clockwiseOrder.findIndex((y) => y.test(secondPropData.unprefixedName))
 		);
 	}
 

@@ -1,12 +1,3 @@
 'use strict';
 
-module.exports = [
-	'margin-top',
-	'margin-right',
-	'margin-bottom',
-	'margin-left',
-	'padding-top',
-	'padding-right',
-	'padding-bottom',
-	'padding-left',
-];
+module.exports = [/.+-top-*.*/i, /.+-right-*.*/i, /.+-bottom-*.*/i, /.+-left-*.*/i];
