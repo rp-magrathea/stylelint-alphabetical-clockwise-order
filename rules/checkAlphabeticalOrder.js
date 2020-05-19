@@ -1,5 +1,6 @@
 const postcss = require('postcss');
 const shorthandData = require('./shorthandData');
+const clockwiseOrder = require('./clockwiseData');
 
 function isShorthand(a, b) {
 	const longhands = shorthandData[a] || [];
@@ -29,6 +30,17 @@ module.exports = function checkAlphabeticalOrder(firstPropData, secondPropData) 
 		}
 
 		return true;
+	}
+
+	// If shorthand uses clockwise ordering, OK for longhand to be ordered -top < -right < -bottom < -left
+	if (
+		clockwiseOrder.includes(firstPropData.unprefixedName) &&
+		clockwiseOrder.includes(secondPropData.unprefixedName)
+	) {
+		return (
+			clockwiseOrder.indexOf(firstPropData.unprefixedName) <
+			clockwiseOrder.indexOf(secondPropData.unprefixedName)
+		);
 	}
 
 	return firstPropData.unprefixedName < secondPropData.unprefixedName;
