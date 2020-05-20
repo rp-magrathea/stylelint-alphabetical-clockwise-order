@@ -26,7 +26,7 @@ function isShorthand(a, b) {
 module.exports = function checkAlphabeticalOrder(
 	firstPropData,
 	secondPropData,
-	allowClockwise = false
+	strictAlphabetical = false
 ) {
 	// OK if the first is shorthand for the second:
 	if (isShorthand(firstPropData.unprefixedName, secondPropData.unprefixedName)) {
@@ -53,7 +53,7 @@ module.exports = function checkAlphabeticalOrder(
 
 	// If shorthand uses clockwise ordering, OK for longhand to be ordered -top < -right < -bottom < -left
 	if (
-		allowClockwise &&
+		!strictAlphabetical &&
 		isClockwiseException(firstPropData.unprefixedName, secondPropData.unprefixedName)
 	) {
 		return (

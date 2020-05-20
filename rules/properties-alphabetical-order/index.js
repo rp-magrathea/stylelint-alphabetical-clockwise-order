@@ -3,7 +3,7 @@ let postcssSorting = require('postcss-sorting');
 let { namespace, getContainingNode, isRuleWithNodes } = require('../../utils');
 let checkNode = require('./checkNode');
 
-let ruleName = namespace('properties-alphabetical-order');
+let ruleName = namespace('properties-alphabetical-clockwise-order');
 
 let messages = stylelint.utils.ruleMessages(ruleName, {
 	expected: (first, second) => `Expected ${first} to come before ${second}`,
@@ -21,7 +21,7 @@ function rule(actual, options = {}, context = {}) {
 			{
 				actual: options,
 				possible: {
-					allowClockwise: Boolean,
+					strictAlphabetical: Boolean,
 					disableFix: Boolean,
 				},
 				optional: true,
@@ -32,7 +32,7 @@ function rule(actual, options = {}, context = {}) {
 			return;
 		}
 
-		let allowClockwise = options.allowClockwise || false;
+		let strictAlphabetical = options.strictAlphabetical || false;
 
 		let disableFix = options.disableFix || false;
 
@@ -55,7 +55,7 @@ function rule(actual, options = {}, context = {}) {
 			processedParents.push(node);
 
 			if (isRuleWithNodes(node)) {
-				checkNode(node, result, allowClockwise, ruleName, messages);
+				checkNode(node, result, strictAlphabetical, ruleName, messages);
 			}
 		});
 	};
