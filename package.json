@@ -1,7 +1,7 @@
 {
-  "name": "stylelint-order",
-  "version": "4.0.0",
-  "description": "A collection of order related linting rules for stylelint.",
+  "name": "@rp-magrathea/stylelint-alphabetical-clockwise-order",
+  "version": "1.0.0",
+  "description": "A property ordering rule for stylelint.",
   "keywords": [
     "stylelint-plugin",
     "stylelint",
@@ -9,9 +9,8 @@
     "lint",
     "order"
   ],
-  "author": "Aleks Hudochenkov <aleks@hudochenkov.com>",
   "license": "MIT",
-  "repository": "hudochenkov/stylelint-order",
+  "repository": "rp-magrathea/stylelint-alphabetical-clockwise-order",
   "files": [
     "rules",
     "utils",
@@ -30,18 +29,18 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-hudochenkov": "^5.0.1",
-    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-hudochenkov": "^5.0.3",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-unicorn": "^18.0.1",
     "husky": "^4.2.5",
-    "jest": "^25.3.0",
+    "jest": "^25.5.4",
     "jest-preset-stylelint": "^3.0.0",
     "jest-watch-typeahead": "^0.5.0",
-    "lint-staged": "^10.1.3",
-    "prettier": "~2.0.4",
+    "lint-staged": "^10.2.4",
+    "prettier": "^2.0.5",
     "prettier-config-hudochenkov": "^0.2.0",
-    "stylelint": "^13.3.2"
+    "stylelint": "^13.5.0"
   },
   "scripts": {
     "pretest": "eslint . --max-warnings=0 && prettier '**/*.js' --check",

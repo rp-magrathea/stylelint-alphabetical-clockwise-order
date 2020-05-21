@@ -1,8 +1,8 @@
-# stylelint-order
+# stylelint-alphabetical-clockwise-order
 
-[![npm version][npm-version-img]][npm] [![npm downloads last month][npm-downloads-img]][npm]
+A derivation and fork of (`stylelint-order`)[https://github.com/hudochenkov/stylelint-order]. Provides one rule, `properties-alphabetical-clockwise-order`, which sorts all properties alphabetically except long-form properties containing `-top`, `-right`, `-bottom`, or `-left`, which are sorted in that order.
 
-A plugin pack of order-related linting rules for [stylelint]. Every rule supports autofixing (`stylelint --fix`).
+Autofixing is still enabled, but still corrects to strictly alphabetical ordering. (TODO: #1 Update autofix to handle alpha-clockwise)
 
 ## Installation
 
@@ -12,54 +12,39 @@ A plugin pack of order-related linting rules for [stylelint]. Every rule support
 npm install stylelint --save-dev
 ```
 
-2.  Install `stylelint-order`:
+2.  Install `stylelint-alphabetical-clockwise-order`:
 
 ```
-npm install stylelint-order --save-dev
+npm install stylelint-alphabetical-clockwise-order --save-dev
 ```
 
 ## Usage
 
-Add `stylelint-order` to your stylelint config `plugins` array, then add rules you need to the rules list. All rules from stylelint-order need to be namespaced with `order`.
+Add `stylelint-alphabetical-clockwise-order` to your stylelint config `plugins` array, then add the `plugin/properties-alphabetical-clockwise-order` rule to the rules list (note the namespace).
 
 ```json
 {
 	"plugins": [
-		"stylelint-order"
+		"stylelint-alphabetical-clockwise-order"
 	],
 	"rules": {
-		"order/order": [
-			"custom-properties",
-			"declarations"
-		],
-		"order/properties-alphabetical-order": true
+		"plugin/properties-alphabetical-clockwise-order": true
 	}
 }
 ```
 
 ## Rules
 
-* [`order`](./rules/order/README.md): Specify the order of content within declaration blocks.
-* [`properties-order`](./rules/properties-order/README.md): Specify the order of properties within declaration blocks.
-* [`properties-alphabetical-order`](./rules/properties-alphabetical-order/README.md): Specify the alphabetical order of properties within declaration blocks.
+* [`properties-alphabetical-clockwise-order`](./rules/properties-alphabetical-clockwise-order/README.md): Specify the alphabetical-clockwise order of properties within declaration blocks.
 
 ## Autofixing
-
-Every rule supports autofixing with `stylelint --fix`. [postcss-sorting] is used internally for order autofixing.
-
-Automatic sorting has some limitations that are described for every rule, if any. Please, take a look at [how comments are handled](https://github.com/hudochenkov/postcss-sorting#handling-comments) by `postcss-sorting`.
-
-CSS-in-JS styles with template interpolation [could be ignored by autofixing](https://github.com/hudochenkov/postcss-sorting#css-in-js) to avoid style corruption.
 
 Autofixing is enabled by default if it's enabled in stylelint's configuration file. It can be disabled on a per rule basis using the secondary option `disableFix: true`. Here's an example:
 
 ```json
 	"rules": {
-		"order/order": [
-			[
-				"custom-properties",
-				"declarations"
-			],
+		"plugin/alphabetical-clockwise-order": [
+			true,
 			{
 				"disableFix": true
 			}
@@ -69,12 +54,6 @@ Autofixing is enabled by default if it's enabled in stylelint's configuration fi
 
 Less may work but isn't officially supported.
 
-## Thanks
-
-`properties-order` and `properties-alphabetical-order` code and README are based on the `declaration-block-properties-order` rule which was a core rule prior to stylelint 8.0.0.
-
-[npm-version-img]: https://img.shields.io/npm/v/stylelint-order.svg
-[npm-downloads-img]: https://img.shields.io/npm/dm/stylelint-order.svg
-[npm]: https://www.npmjs.com/package/stylelint-order
+[npm]: https://www.npmjs.com/package/stylelint-alphabetical-clockwise-order
 [stylelint]: https://stylelint.io/
 [postcss-sorting]: https://github.com/hudochenkov/postcss-sorting

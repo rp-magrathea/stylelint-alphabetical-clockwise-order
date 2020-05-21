@@ -3,7 +3,7 @@ let postcssSorting = require('postcss-sorting');
 let { namespace, getContainingNode, isRuleWithNodes } = require('../../utils');
 let checkNode = require('./checkNode');
 
-let ruleName = namespace('properties-alphabetical-order');
+let ruleName = namespace('properties-alphabetical-clockwise-order');
 
 let messages = stylelint.utils.ruleMessages(ruleName, {
 	expected: (first, second) => `Expected ${first} to come before ${second}`,
@@ -21,6 +21,7 @@ function rule(actual, options = {}, context = {}) {
 			{
 				actual: options,
 				possible: {
+					strictAlphabetical: Boolean,
 					disableFix: Boolean,
 				},
 				optional: true,
@@ -30,6 +31,8 @@ function rule(actual, options = {}, context = {}) {
 		if (!validOptions) {
 			return;
 		}
+
+		let strictAlphabetical = options.strictAlphabetical || false;
 
 		let disableFix = options.disableFix || false;
 
@@ -44,7 +47,7 @@ function rule(actual, options = {}, context = {}) {
 		root.walk(function processRulesAndAtrules(input) {
 			let node = getContainingNode(input);
 
-			// Avoid warnings duplication, caused by interfering in `root.walk()` algorigthm with `getContainingNode()`
+			// Avoid warnings duplication, caused by interfering in `root.walk()` algorithm with `getContainingNode()`
 			if (processedParents.includes(node)) {
 				return;
 			}
@@ -52,7 +55,7 @@ function rule(actual, options = {}, context = {}) {
 			processedParents.push(node);
 
 			if (isRuleWithNodes(node)) {
-				checkNode(node, result, ruleName, messages);
+				checkNode(node, result, strictAlphabetical, ruleName, messages);
 			}
 		});
 	};

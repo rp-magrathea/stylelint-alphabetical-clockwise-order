@@ -4,6 +4,72 @@ const { ruleName, messages } = rule;
 
 testRule({
 	ruleName,
+	config: [
+		true,
+		{
+			disableFix: true,
+		},
+	],
+	fix: false,
+
+	accept: [
+		{
+			code: 'a { margin-top: 1em; margin-right: 1em; margin-bottom: 1em; margin-left: 1em; }',
+			description: 'clockwise (top, right, bottom, left)',
+		},
+		{
+			code: 'a { border-bottom-color: teal; border-bottom-width: 1px; }',
+			description: 'same clockwise piece (-bottom) should be otherwise alphabetical',
+		},
+		{
+			code: 'a { margin-right: 1em; padding-top: 1em; }',
+			description: 'alphabetical first, then clockwise',
+		},
+	],
+
+	reject: [
+		{
+			code: 'a { margin-right: 1em; margin-top: 1em; }',
+			message: messages.expected('margin-top', 'margin-right'),
+		},
+		{
+			code: 'a { border-bottom-width: 1em; border-bottom-color: teal; }',
+			message: messages.expected('border-bottom-color', 'border-bottom-width'),
+		},
+		{
+			code: 'a { padding-top: 1em; margin-right: 1em; }',
+			message: messages.expected('margin-right', 'padding-top'),
+		},
+	],
+});
+
+testRule({
+	ruleName,
+	config: [
+		true,
+		{
+			disableFix: true,
+			strictAlphabetical: true,
+		},
+	],
+	fix: false,
+
+	accept: [
+		{
+			code: 'a { margin-bottom: 1em; margin-left: 1em; margin-right: 1em; margin-top: 1em; }',
+		},
+	],
+
+	reject: [
+		{
+			code: 'a { margin-top: 1em; margin-right: 1em; }',
+			message: messages.expected('margin-right', 'margin-top'),
+		},
+	],
+});
+
+testRule({
+	ruleName,
 	config: [true],
 	fix: true,
 

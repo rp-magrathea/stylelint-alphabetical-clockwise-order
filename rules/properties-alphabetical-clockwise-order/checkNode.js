@@ -5,7 +5,7 @@ let checkAlphabeticalOrder = require('../checkAlphabeticalOrder');
 let { isStandardSyntaxProperty, isCustomProperty } = require('../../utils');
 
 // eslint-disable-next-line max-params
-module.exports = function checkNode(node, result, ruleName, messages) {
+module.exports = function checkNode(node, result, strictAlphabetical, ruleName, messages) {
 	let allPropData = [];
 
 	node.each(function processEveryNode(child) {
@@ -47,7 +47,7 @@ module.exports = function checkNode(node, result, ruleName, messages) {
 			return;
 		}
 
-		let isCorrectOrder = checkAlphabeticalOrder(previousPropData, propData);
+		let isCorrectOrder = checkAlphabeticalOrder(previousPropData, propData, strictAlphabetical);
 
 		if (isCorrectOrder) {
 			return;

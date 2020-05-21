@@ -1,5 +1,6 @@
 The MIT License (MIT)
 
+Copyright 2020-present Cecilia Suderman <veralidaine.thewildmage@gmail.com>
 Copyright 2016–present Aleks Hudochenkov <aleks@hudochenkov.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
