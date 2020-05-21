@@ -1,6 +1,6 @@
 {
-  "name": "stylelint-alphabetical-clockwise-order",
-  "version": "5.0.0",
+  "name": "@rp-magrathea/stylelint-alphabetical-clockwise-order",
+  "version": "1.0.0",
   "description": "A property ordering rule for stylelint.",
   "keywords": [
     "stylelint-plugin",
@@ -9,7 +9,6 @@
     "lint",
     "order"
   ],
-  "author": "Cecilia Suderman <veralidaine.thewildmage@gmail.com>",
   "license": "MIT",
   "repository": "rp-magrathea/stylelint-alphabetical-clockwise-order",
   "files": [
@@ -38,10 +37,10 @@
     "jest": "^25.5.4",
     "jest-preset-stylelint": "^3.0.0",
     "jest-watch-typeahead": "^0.5.0",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^10.2.4",
     "prettier": "^2.0.5",
     "prettier-config-hudochenkov": "^0.2.0",
-    "stylelint": "^13.3.3"
+    "stylelint": "^13.5.0"
   },
   "scripts": {
     "pretest": "eslint . --max-warnings=0 && prettier '**/*.js' --check",
