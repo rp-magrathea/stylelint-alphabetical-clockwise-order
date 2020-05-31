@@ -1,7 +1,7 @@
 The MIT License (MIT)
 
-Copyright 2020-present Cecilia Suderman <veralidaine.thewildmage@gmail.com>
-Copyright 2016–present Aleks Hudochenkov <aleks@hudochenkov.com>
+Original work Copyright 2016–present Aleks Hudochenkov <aleks@hudochenkov.com>
+Modified work Copyright 2020 Cecilia Suderman <veralidaine.thewildmage@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
