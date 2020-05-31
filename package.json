@@ -10,10 +10,7 @@
     "order"
   ],
   "license": "MIT",
-  "repository": {
-    "type" : "git",
-    "url" : "https://github.com/rp-magrathea/stylelint-alphabetical-clockwise-order"
-  },
+  "repository": "git://github.com/rp-magrathea/stylelint-alphabetical-clockwise-order.git",
   "files": [
     "rules",
     "utils",
