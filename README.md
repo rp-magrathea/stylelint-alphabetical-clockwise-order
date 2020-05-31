@@ -1,6 +1,6 @@
 # stylelint-alphabetical-clockwise-order
 
-A derivation and fork of (`stylelint-order`)[https://github.com/hudochenkov/stylelint-order]. Provides one rule, `properties-alphabetical-clockwise-order`, which sorts all properties alphabetically except long-form properties containing `-top`, `-right`, `-bottom`, or `-left`, which are sorted in that order.
+A derivation and fork of [`stylelint-order`](https://github.com/hudochenkov/stylelint-order). Provides one rule, `properties-alphabetical-clockwise-order`, which sorts all properties alphabetically except long-form properties containing `-top`, `-right`, `-bottom`, or `-left`, which are sorted in that order.
 
 Autofixing is still enabled, but still corrects to strictly alphabetical ordering. (TODO: #1 Update autofix to handle alpha-clockwise)
 
